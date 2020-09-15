@@ -1,0 +1,50 @@
+function setup() {
+  createCanvas(1000, 600);
+   
+}
+  
+  function draw(){
+    //cielo 
+    /*Se declaran las variables para colocar el fondo y el mapeo para que al pasara el mouse sobre el fondo, este vaya degradandose de izquierda a derecha*/
+    //rgb(52, 152, 219)
+    
+    var Br=5; //fondo rojo
+    var Bg= map(mouseX, 0, width, 0, 175); //fondo verde
+    var Bb=map(mouseX, 0, width, 0,260); //fondo azul
+    
+    background(Br, Bg, Bb);
+    
+    //estrellas
+    /* Alpha determina el patron de estrellas, cantidad y lugar */
+    
+    alphaE= map(mouseX, 0, width, 255, 0);
+    
+    if(mouseX <= width * 2/4){ /*al pasar por 2/ del fondo este empieza a degradarse*/
+      for(var i = 0; i <= width; i+=75){ //ambos for determinan orientacion horizontal y                                            //vertical
+        for( var j = 0; j <= height; j+=75){
+          fill(300, alphaE);
+          noStroke();
+          ellipse(i, j, random(3, 5));
+        }
+      }
+    }
+    
+    //Sol
+    //rgb(241, 196, 15)
+    /* Determina el tamaño, color y la degradacion interna del sol*/
+    var Sr = 241; //Color rojo
+    var Sg = 196; //Color verde
+    var Sb = 15; //Color azul
+    
+      for(var sR = 300; sR >= 0; sR -=random(5, 10)){ //determina la degradacion del                                                           //sol, su movimiento y tamaño
+        fill(Sr, Sg, Sb);
+        ellipse(width/8, height/5, sR);
+          
+        //Determina los puntos de cambio en la coloracion del sol
+        
+        Sr+=10;
+        Sg+=10;
+        Sb+=4;
+      }
+    
+  }
